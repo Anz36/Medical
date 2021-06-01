@@ -34,13 +34,13 @@ CREATE TABLE users(
 
 CREATE TABLE medical_appointments(
     medical_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    pacient_id INTEGER UNSIGNED,
-    doctor_id INTEGER UNSIGNED NOT NULL,
+    pacient_id INTEGER UNSIGNED NOT NULL,
+    datings_id INTEGER UNSIGNED NOT NULL,
     active TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (pacient_id) REFERENCES pacients(pacient_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)
+    FOREIGN KEY (datings_id) REFERENCES datings(datings_id)
 );
 
 CREATE TABLE datings(
