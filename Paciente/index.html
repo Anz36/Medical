@@ -122,23 +122,37 @@
                                 <div class="col">
                                     <form id="form-editPerfil">
                                     <div class="form-group">
-                                        <label for="nombrePerfil">Nombre</label>
+                                        <label for="nombrePerfil">DNI</label>
                                         <input type="text" class="form-control" id="nombrePerfil" aria-describedby="helpId">
                                         <small id="helpId" class="form-text text-muted">Primer nombre</small>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="apellidoPerfil">Apellido</label>
+                                        <label for="apellidoPerfil">Nombres Completos</label>
                                         <input type="text" class="form-control" id="apellidoPerfil" aria-describedby="helpId">
                                         <small id="helpId" class="form-text text-muted">Primer apellido</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-2">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="pacienteGenero">Genero</label>
+                                        <select class="form-control" id="pacienteGenero" aria-describedby="helpId">
+                                            <option selected>Seleciona ...</option>
+                                            <option value="H">Hombre</option>
+                                            <option value="M">Mujer</option>
+                                            <option value="ND">No menciono</option>
+                                        </select>
+                                        <small id="helpId" class="form-text text-muted">Ayudanos a saber tu genero</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
                                 <div class="col">
                                     <div class="form-group">
-                                      <label for="cumpleañosPerfil">Cumpleaños</label>
+                                      <label for="cumpleañosPerfil">Nacimiento</label>
                                       <input type="date" class="form-control" id="cumpleañosPerfil" aria-describedby="helpId">
                                       <small id="helpId" class="form-text text-muted">¿Cúando Nacio?</small>
                                     </div>
@@ -147,7 +161,7 @@
                                     <div class="form-group">
                                       <label for="telefonoPerfil">Telefono</label>
                                       <input type="text" class="form-control" id="telefonoPerfil" aria-describedby="helpId">
-                                      <small id="helpId" class="form-text text-muted">Numero de telefono</small>
+                                      <small id="helpId" class="form-text text-muted">Numero de telefono más usado</small>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +189,7 @@
             </div>
             <!-- Fin Modal Perfil Datos-->
 
-            <!-- Modal Perfil Datos -->
+            <!-- Modal Solicitar Cita -->
             <div class="modal fade" id="myModalPerfil">
                 <div class="modal-dialog modal-lg">
                 <div class="modal-content">

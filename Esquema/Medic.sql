@@ -25,22 +25,11 @@ CREATE TABLE doctors(
 CREATE TABLE users(
     users_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    `password` VARCHAR(50) NOT NULL,
+    `password` VARCHAR(50) NOT NULL DEFAULT '7ff9b6994582b6c0d8b1cbc58562a1a6f6c8411b',
     `type` ENUM('P','A') NOT NULL DEFAULT 'P',
     active TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE medical_appointments(
-    medical_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    pacient_id INTEGER UNSIGNED NOT NULL,
-    datings_id INTEGER UNSIGNED NOT NULL,
-    active TINYINT(1) NOT NULL DEFAULT 1,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (pacient_id) REFERENCES pacients(pacient_id),
-    FOREIGN KEY (datings_id) REFERENCES datings(datings_id)
 );
 
 CREATE TABLE datings(
@@ -52,3 +41,19 @@ CREATE TABLE datings(
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)
 );
+
+CREATE TABLE medical_appointments(
+    medical_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    pacient_id INTEGER UNSIGNED NOT NULL,
+    datings_id INTEGER UNSIGNED NOT NULL,
+    active TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (pacient_id) REFERENCES pacients(pacient_id),
+    FOREIGN KEY (datings_id) REFERENCES datings(dating_id)
+);
+
+INSERT INTO users(users_id,`name`,`password`,`type`)
+VALUES (1,'Admin','40bd001563085fc35165329ea1ff5c5ecbdbbeef','A');
+INSERT INTO users(users_id,`name`,`password`,`type`)
+VALUES (2,'AdminP','40bd001563085fc35165329ea1ff5c5ecbdbbeef','P');
