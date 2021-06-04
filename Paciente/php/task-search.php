@@ -3,12 +3,13 @@
 
     $search = $_POST['search'];
     if(!empty($search)){
-        $query = "SELECT * from datings where `doctor_id` like '$search%' or created_at like '$search%' ORDER BY dating_id DESC";
+        $query = "SELECT datings.dating_id, doctors.name, datings.lot, datings.created_at FROM datings 
+        INNER JOIN doctors ON datings.doctor_id = doctors.doctor_id WHERE doctors.name LIKE '$search%' ";
         $result = $conexion->query($query);
         $json = array();
         while($row = $result->fetch_array()){
             $json[] = array(
-            'doctor' => $row['doctor_id'],
+            'doctor' => $row['name'],
             'fecha' => $row['created_at'],
             'disponible' => $row['lot']
             );

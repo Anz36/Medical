@@ -1,21 +1,22 @@
 fetchList();
+fetchUser();
 
 $('#searchCita').keyup(function(){
     if(($('#searchCita').val()) !== ""){
-        let search = $('#searchCliente').val();
+        let search = $('#searchCita').val();
         $.ajax({
-            url: '../Citas/php/task-search.php',
+            url: '../Paciente/php/task-search.php',
             type: 'POST',
             data: {search},
             success: function(response){
                 let task = JSON.parse(response);
-                console.log('task');
+                console.log(response);
                 let template = '';
                 task.forEach(tasks =>{
                     template +=`
                         <tr taskId="${tasks.id}">
                         <td>
-                        <a  class = "btn btn-ligth btnCitar btn-md rounded-pill" data-toggle="modal" data-target="#myModalAtender"> <i class="fas fa-headset fa-2x text-primary" title = "Atender"></i> </a>
+                        <a  class = "btn btn-ligth btnSolicitar btn-md rounded-pill" data-toggle="modal" data-target="#myModalAtender"> <i class="fas fa-headset fa-2x text-primary" title = "Atender"></i> </a>
                         </td>
                             <td class="align-center">${tasks.fecha}</td>
                             <td>${tasks.doctor}</td>
@@ -133,27 +134,34 @@ $('#form-atencion').submit(function(e){
 });
 
 $(document).on('click','.btnPerfil',function(){
-    $.post('../Cliente/php/task-view-user.php',function(response){
+    $.post('../Paciente/php/task-view-user.php',function(response){
         const task = JSON.parse(response);
-        $('#nombrePerfil').val(task.nombre);
-        $('#apellidoPerfil').val(task.apellidos);
-        $('#cumpleañosPerfil').val(task.cumpleaños);
-        $('#telefonoPerfil').val(task.telefono);
-        $('#emailPerfil').val(task.email);
+        $('#pacienteDNIPerfil').val(task.dni);
+        $('#pacienteNombrePerfil').val(task.nombre);
+        $('#pacienteGeneroPerfil').val(task.genero);
+        $('#pacienteNacimientoPerfil').val(task.nacimiento);
+        $('#pacienteTelefonoPerfil').val(task.telefono);
+        $('#pacienteEmailPerfil').val(task.email);
     })
 });
 
 $('#form-editPerfil').submit(function(e){
     const postData = {
-        nombre: $('#nombrePerfil').val(),
-        apellidos: $('#apellidoPerfil').val(),
-        cumpleaños: $('#cumpleañosPerfil').val(),
-        telefono: $('#telefonoPerfil').val(),
-        email: $('#emailPerfil').val()
+        dni: $('#pacienteDNIPerfil').val(),
+        nombre: $('#pacienteNombrePerfil').val(),
+        genero: $('#pacienteGeneroPerfil').val(),
+        nacimiento: $('#pacienteNacimientoPerfil').val(),
+        telefono: $('#pacienteTelefonoPerfil').val(),
+        email: $('#pacienteEmailPerfil').val()
     }
-    $.post('../Cliente/php/task-update-user.php',postData, function(response){
+    $.post('../Paciente/php/task-update-user.php',postData, function(response){
         alert('Su Perfil a sido editado');
     });
+});
+
+$('#form-edit-password').submit(function(e){
+    console.log('Cambiar');
+    e.preventDefault();
 });
 
 function fetchCliente(){
@@ -199,7 +207,7 @@ function fetchList(){
                     template +=`
                         <tr taskId="${tasks.id}">
                         <td>
-                            <a  class = "btn btn-ligth btnAtender btn-md rounded-pill" data-toggle="modal" data-target="#myModalAtender"> <i class="fas fa-headset fa-2x text-primary" title = "Atender"></i> </a>
+                            <a  class = "btn btn-ligth btnSolicitar btn-md rounded-pill" data-toggle="modal" data-target="#myModalSolicitar"> <i class="fas fa-headset fa-2x text-primary" title = "Atender"></i> </a>
                             </td>
                             <td>${tasks.fecha}</td>
                             <td>${tasks.doctor}</td>

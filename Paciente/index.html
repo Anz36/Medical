@@ -122,24 +122,26 @@
                                 <div class="col">
                                     <form id="form-editPerfil">
                                     <div class="form-group">
-                                        <label for="nombrePerfil">DNI</label>
-                                        <input type="text" class="form-control" id="nombrePerfil" aria-describedby="helpId">
-                                        <small id="helpId" class="form-text text-muted">Primer nombre</small>
+                                        <label for="pacienteDNIPerfil">DNI</label>
+                                        <input type="text" class="form-control" id="pacienteDNIPerfil" aria-describedby="helpId">
+                                        <small id="helpId" class="form-text text-muted">¿Se equivoco su DNI?, Editelo</small>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row mb-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="apellidoPerfil">Nombres Completos</label>
-                                        <input type="text" class="form-control" id="apellidoPerfil" aria-describedby="helpId">
-                                        <small id="helpId" class="form-text text-muted">Primer apellido</small>
+                                        <label for="pacienteNombrePerfil">Nombres Completos</label>
+                                        <input type="text" class="form-control" id="pacienteNombrePerfil" aria-describedby="helpId">
+                                        <small id="helpId" class="form-text text-muted">¿Se equivoco su Nombre o Apellido?, Editelo</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label for="pacienteGenero">Genero</label>
-                                        <select class="form-control" id="pacienteGenero" aria-describedby="helpId">
+                                        <label for="pacienteGeneroPerfil">Genero</label>
+                                        <select class="form-control" id="pacienteGeneroPerfil" aria-describedby="helpId">
                                             <option selected>Seleciona ...</option>
                                             <option value="H">Hombre</option>
                                             <option value="M">Mujer</option>
@@ -152,15 +154,15 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <div class="form-group">
-                                      <label for="cumpleañosPerfil">Nacimiento</label>
-                                      <input type="date" class="form-control" id="cumpleañosPerfil" aria-describedby="helpId">
+                                      <label for="pacienteNacimientoPerfil">Nacimiento</label>
+                                      <input type="date" class="form-control" id="pacienteNacimientoPerfil" aria-describedby="helpId">
                                       <small id="helpId" class="form-text text-muted">¿Cúando Nacio?</small>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                      <label for="telefonoPerfil">Telefono</label>
-                                      <input type="text" class="form-control" id="telefonoPerfil" aria-describedby="helpId">
+                                      <label for="pacienteTelefonoPerfil">Telefono</label>
+                                      <input type="text" class="form-control" id="pacienteTelefonoPerfil" aria-describedby="helpId">
                                       <small id="helpId" class="form-text text-muted">Numero de telefono más usado</small>
                                     </div>
                                 </div>
@@ -168,10 +170,36 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="emailPerfil">Email</label>
-                                        <input type="email" class="form-control" id="emailPerfil" aria-describedby="helpId">
-                                        <small id="helpId" class="form-text text-muted">Correo más usado</small>
-                                      </div>
+                                        <label for="pacienteEmailPerfil">Email</label>
+                                        <input type="email" class="form-control" id="pacienteEmailPerfil" aria-describedby="helpId">
+                                        <small id="helpId" class="form-text text-muted">Recuerda: El correo más usado</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-2">
+                                <form id="form-edit-password">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="pacienteClavePerfil">Contraseña Actual</label>
+                                        <input type="password" class="form-control" id="pacienteClavePerfil" aria-describedby="helpId">
+                                        <small id="helpId" class="form-text text-muted">Digite su contraseña actual</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="pacienteClavePerfil">Nueva Contraseña</label>
+                                        <input type="password" class="form-control" id="pacienteClavePerfil" aria-describedby="helpId">
+                                        <small id="helpId" class="form-text text-muted">Digite su nueva contraseña</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    <button type="submit" class="btn btn-warning rounded-pill">Cambiar Contraseña</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -190,8 +218,8 @@
             <!-- Fin Modal Perfil Datos-->
 
             <!-- Modal Solicitar Cita -->
-            <div class="modal fade" id="myModalPerfil">
-                <div class="modal-dialog modal-lg">
+            <div class="modal fade" id="myModalSolicitar">
+                <div class="modal-dialog">
                 <div class="modal-content">
                 
                     <!-- Modal Header -->
@@ -240,6 +268,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
-<script src="js/cliente.js"></script>
+<script src="js/paciente.js"></script>
 <script src="js/empresa.js"></script>
 </html>

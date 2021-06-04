@@ -3,7 +3,7 @@ CREATE TABLE pacients(
     `name` VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone VARCHAR(11) NOT NULL UNIQUE,
-    birthdate DATETIME,
+    birthdate DATE,
     gender ENUM('M','F','ND') NOT NULL,
     active TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
