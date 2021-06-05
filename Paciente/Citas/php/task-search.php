@@ -1,53 +1,21 @@
 <?php
-    include "../../Conexion/conexion.php";
-    function getNull($dato){
-        include "../../Conexion/conexion.php";
-        if($dato == null){
-            return "Sin Dato";
-        }else {
-            $query = "SELECT name FROM business WHERE id = '$dato'";
-            $result = $conexion->query($query)->fetch_array();
-            return $result['name'];
-        }
-    }
-
-    function getEmpresa($dato){
-            include "../../Conexion/conexion.php";
-            $query = "SELECT id FROM business WHERE name like '$dato%'";
-            $result = $conexion->query($query)->fetch_array();
-            return $result['id'];
-    }
-
+    include "../../../Conexion/conexion.php";
+    session_start();
+    $idPaciente = $_SESSION['usuario'];
     $search = $_POST['search'];
     if(!empty($search)){
-        $query = "SELECT * from customers where `name` like '$search%' or email like '$search%' or phone like '$search%' or district like '$search%' or position like '$search%' ORDER BY id DESC";
+        $query = "SELECT medical_appointments.pacient_id, medical_appointments.datings_id, datings.created_at FROM medical_appointments 
+        INNER JOIN datings ON medical_appointments.datings_id = datings.dating_id 
+        WHERE datings.created_at LIKE '$search%' AND medical_appointments.pacient_id = '$idPaciente' 
+        AND datings.active != 0 AND medical_appointments.active != 0";
         $result = $conexion->query($query);
         $json = array();
         while($row = $result->fetch_array()){
             $json[] = array(
-            'id' => $row['id'],
-            'cliente' => $row['name'],
-            'business' => getNull($row['id_business'])
+            'idCita' => $row['datings_id'],
+            'fechaCita' => $row['created_at']
             );
         }
-        $jsonString = json_encode($json);
-        if($jsonString == "[]"){
-            $idEmpresa = getEmpresa($search);
-            $query = "SELECT * from customers WHERE business = '$idEmpresa'";
-            $result = $conexion->query($query);
-            $json = array();
-            while($row = $result->fetch_array()){
-                $json[] = array(
-                    'id' => $row['id'],
-                    'cliente' => $row['name'],
-                    'business' => getNull($row['id_business'])
-                    );
-            }
-            $jsonString = json_encode($json);
-            echo $jsonString;
-        } else {
-            echo $jsonString;
-        }
-        
+        echo json_encode($json);
     }
 ?>

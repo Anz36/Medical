@@ -176,13 +176,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr>
                             <div class="row mb-2">
-                                <form id="form-edit-password">
+                                <div class="col">
+                                     <button type="submit" class="btn btn-success rounded-pill">Editar Perfil</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                            <form id="form-edit-password">
+                            <div class="row mb-2">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="pacienteClavePerfil">Contraseña Actual</label>
-                                        <input type="password" class="form-control" id="pacienteClavePerfil" aria-describedby="helpId">
+                                        <label for="pacienteClaveActualPerfil">Contraseña Actual</label>
+                                        <input type="password" class="form-control" id="pacienteClaveActualPerfil" aria-describedby="helpId">
                                         <small id="helpId" class="form-text text-muted">Digite su contraseña actual</small>
                                     </div>
                                 </div>
@@ -190,8 +196,8 @@
                             <div class="row mb-2">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="pacienteClavePerfil">Nueva Contraseña</label>
-                                        <input type="password" class="form-control" id="pacienteClavePerfil" aria-describedby="helpId">
+                                        <label for="pacienteNuevaClavePerfil">Nueva Contraseña</label>
+                                        <input type="password" class="form-control" id="pacienteNuevaClavePerfil" aria-describedby="helpId">
                                         <small id="helpId" class="form-text text-muted">Digite su nueva contraseña</small>
                                     </div>
                                 </div>
@@ -207,8 +213,7 @@
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success rounded-pill">Editar</button>
-                    </form>
+                        
                         <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">Salir</button>
                     </div>
                     
@@ -234,12 +239,36 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <form id="form-solicitarCita">
+                                    <h6>Paciente <span class="badge badge-pill badge-secunday" id="userNameTwo"></span></h6>
+                                    <input type="hidden" class="form-control" id="idCitaMedica">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col">
                                     <div class="form-group">
-                                        <label for="nombrePerfil">Paciente</label>
-                                        <input type="text" class="form-control" id="nombrePerfil">
+                                      <label for="nombreMedico">Medico</label>
+                                      <input type="text" class="form-control" id="nombreMedico" aria-describedby="helpId" readonly>
+                                      <small id="helpId" class="form-text text-muted">El medico que te atendera</small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                      <label for="especialidadMedico">Especialidad</label>
+                                      <input type="text" class="form-control" id="especialidadMedico" aria-describedby="helpId" readonly>
+                                      <small id="helpId" class="form-text text-muted">La especialidad del Medico</small>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                      <label for="fechaCita">Fecha</label>
+                                      <input type="text" class="form-control" id="fechaCita" aria-describedby="helpId" readonly>
+                                      <small id="helpId" class="form-text text-muted">La fecha propuesta</small>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     
@@ -269,5 +298,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
 <script src="js/paciente.js"></script>
-<script src="js/empresa.js"></script>
+<script src="js/user.js"></script>
 </html>

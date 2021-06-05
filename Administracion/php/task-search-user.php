@@ -1,6 +1,6 @@
 <?php
         session_start();
-        include "../../../Conexion/conexion.php";
+        include "../../Conexion/conexion.php";
         function getDato($dato){
             if($dato == 'P'){
                 return 'Paciente';

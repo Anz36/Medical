@@ -1,5 +1,5 @@
 <?php
-    include '../../../Conexion/conexion.php';
+    include '../../Conexion/conexion.php';
     session_start();
     function getClave($dato){
         include "../../Conexion/conexion.php";

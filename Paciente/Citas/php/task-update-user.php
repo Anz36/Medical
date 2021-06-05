@@ -1,15 +1,16 @@
 <?php
     session_start();
-    include "../../Conexion/conexion.php";
+    include "../../../Conexion/conexion.php";
     $idUsuario = $_SESSION['usuario'];
-    if (isset($_POST['nombre'])){
+    if (isset($_POST['dni'])){
+        $dni = $_POST['dni'];
         $nombre = $_POST['nombre'];
-        $apellidos = $_POST['apellidos'];
-        $cumpleaños = $_POST['cumpleaños'];
+        $genero = $_POST['genero'];
+        $nacimiento = $_POST['nacimiento'];
         $telefono = $_POST['telefono'];
         $email = $_POST['email'];
 
-        $query = "UPDATE people SET `name`='$nombre', last_name='$apellidos', email='$email', phone='$telefono' WHERE id = '$idUsuario'";
+        $query = "UPDATE pacients SET `name`='$nombre', gender='$genero', email='$email', phone='$telefono', birthdate = '$nacimiento' WHERE pacient_id = '$idUsuario'";
         $result = $conexion->query($query);
         if ($result){
             echo 'Update';
