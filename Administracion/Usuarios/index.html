@@ -27,13 +27,13 @@
 
         <ul class="nav flex-column bg-white mb-0">
             <li class="nav-item">
-                <a href="../Administracion/" class="nav-link text-dark bg-light">
+                <a href="../" class="nav-link text-dark">
                     <i class="fas fa-users mr-3 text-primary"></i>
                     Citas Medicas
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../Administracion/Usuarios/" class="nav-link text-dark">
+                <a href="../Usuarios/" class="nav-link text-dark bg-light">
                     <i class="fas fa-tasks mr-3 text-primary"></i>
                     Usuarios
                 </a>
@@ -46,24 +46,29 @@
             <button id="sidebarCollapse" type="button" class="btn btn-ligth bg-white rounded-pill shadow-sm px-4 mb-4">
                 <small class="text-uppercase font-weight-bold">Menú</small>
             </button>
-            <h2 class="display-4 text-dark">Citas Medicas</h2>
+            <h2 class="display-4 text-dark">Pacientes</h2>
             <p class="lead text-muted mb-0">
                 Datos obtenidos en tiempo real
             </p>
             <div class="row mb-2">
                 <div class="col-auto">
                     <button type="button" class="btn btn-warning btn-sm rounded-pill" data-toggle="modal" data-target="#myModalCitas">
-                        Agregar Citas
+                        Agregar Paciente
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-warning btn-sm rounded-pill" data-toggle="modal" data-target="#myModalCitas">
+                        Agregar Usuario
                     </button>
                 </div>
             </div>
             <hr>
             <div class="row text-dark">
-                <div class="col-auto">
+                <div class="col">
                     <div class="form-group">
-                        <label for="">Busqueda</label>
-                        <input type="date" class="form-control" id="searchCita" aria-describedby="helpId" placeholder="Busqueda por ...">
-                        <small id="helpId" class="form-text text-muted">Busqueda por Fecha.</small>
+                        <label for="searchPaciente">Busqueda</label>
+                        <input type="text" class="form-control" id="searchPaciente" aria-describedby="helpId" placeholder="Busqueda por ...">
+                        <small id="helpId" class="form-text text-muted">Busqueda por Nombre.</small>
                       </div>
                 </div>
             </div>
@@ -88,12 +93,13 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="text-center">Acciones</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Doctor</th>
-                                <th scope="col">Disponibles</th>
+                                <th scope="col">DNI</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Genero</th>
                             </tr>
                         </thead>
-                        <tbody id="cotenidoCita">
+                        <tbody id="cotenidoPaciente">
                         </tbody>
                     </table>
                 </div>
@@ -103,48 +109,65 @@
         <!-- Inicio Modal's -->
             <!-- Modal -->
             <div class="modal fade" id="myModalCitas" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Agregar Citas</h5>
+                            <h5 class="modal-title">Agregar Paciente</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
+                                <form id="form-add-paciente">
                                 <div class="row mb-2">
-                                    <form id="form-add-cite">
-                                    <div class="col">
+                                    <div class="col-5">
                                         <div class="form-group">
-                                          <label for="fechaCita">Fecha</label>
-                                          <input type="date" class="form-control" id="fechaCita" aria-describedby="helpId">
-                                          <small id="helpId" class="form-text text-muted">Fecha de la Cita</small>
+                                          <label for="pacienteDNI">DNI</label>
+                                          <input type="text" class="form-control" id="pacienteDNI" aria-describedby="helpId" placeholder="12345678">
+                                          <small id="helpId" class="form-text text-muted">DNI de paciente</small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-group">
-                                          <label for="horaCita">Hora</label>
-                                          <input type="time" class="form-control" id="horaCita" aria-describedby="helpId">
-                                          <small id="helpId" class="form-text text-muted">Hora de Cita</small>
+                                          <label for="pacienteNombre">Nombre y Apellido</label>
+                                          <input type="text" class="form-control" id="pacienteNombre" aria-describedby="helpId" placeholder="Nombre Apellido">
+                                          <small id="helpId" class="form-text text-muted">Recuerda: De preferencia solo un nombre y un apellido</small>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                          <label for="lotCita">Cantidad Disponible</label>
-                                          <input type="number" class="form-control" id="lotCita" aria-describedby="helpId" placeholder="20">
-                                          <small id="helpId" class="form-text text-muted">¿Disponibles?</small>
+                                          <label for="pacienteEmail">Email</label>
+                                          <input type="email" class="form-control" id="pacienteEmail" aria-describedby="helpId" placeholder="tucorreo@gmail.com">
+                                          <small id="helpId" class="form-text text-muted">Correo que mas usa</small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="medicoCita">Medico</label>
-                                            <select class="custom-select" id="medicoCita">
-                                                <option value=""></option>
+                                          <label for="pacienteTelefono">Telefono</label>
+                                          <input type="text" class="form-control" id="pacienteTelefono" aria-describedby="helpId" placeholder="123456789">
+                                          <small id="helpId" class="form-text text-muted">Telefono que mas usa</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                          <label for="pacienteNacimiento">Nacimiento</label>
+                                          <input type="date" class="form-control" id="pacienteNacimiento" aria-describedby="helpId">
+                                          <small id="helpId" class="form-text text-muted">¿Cúando Nacio?</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="pacienteGenero">Genero</label>
+                                            <select class="custom-select" id="pacienteGenero">
+                                                <option selected>Selecione ...</option>
+                                                <option value="M">Hombre</option>
+                                                <option value="F">Mujer</option>
+                                                <option value="ND">No menciona</option>
                                             </select>
                                         </div>
                                     </div>
@@ -272,68 +295,6 @@
                     <div class="modal-footer">
                         
                         <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">Salir</button>
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
-            <!-- Fin Modal Perfil Datos-->
-
-            <!-- Modal Solicitar Cita -->
-            <div class="modal fade" id="myModalSolicitar">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title">Solicitar Cita</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <form id="form-solicitarCita">
-                                    <h6>Paciente <span class="badge badge-pill badge-secunday" id="userNameTwo"></span></h6>
-                                    <input type="hidden" class="form-control" id="idCitaMedica">
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                      <label for="nombreMedico">Medico</label>
-                                      <input type="text" class="form-control" id="nombreMedico" aria-describedby="helpId" readonly>
-                                      <small id="helpId" class="form-text text-muted">El medico que te atendera</small>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                      <label for="especialidadMedico">Especialidad</label>
-                                      <input type="text" class="form-control" id="especialidadMedico" aria-describedby="helpId" readonly>
-                                      <small id="helpId" class="form-text text-muted">La especialidad del Medico</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                      <label for="fechaCita">Fecha</label>
-                                      <input type="text" class="form-control" id="fechaCita" aria-describedby="helpId" readonly>
-                                      <small id="helpId" class="form-text text-muted">La fecha propuesta</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success rounded-pill">Solicitar</button>
-                    </form>
-                        <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">Cerrar</button>
                     </div>
                     
                 </div>

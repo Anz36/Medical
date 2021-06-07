@@ -1,13 +1,15 @@
 fetchList();
+fetchDoctor();
 
-$('#searchCita').keyup(function(){
-    if(($('#searchCita').val()) !== ""){
-        let search = $('#searchCita').val();
+$('#searchPaciente').keyup(function(){
+    if(($('#searchPaciente').val()) !== ""){
+        let search = $('#searchPaciente').val();
         $.ajax({
-            url: '../Paciente/php/task-search.php',
+            url: '../Usuarios/php/task-search.php',
             type: 'POST',
             data: {search},
             success: function(response){
+                console.log(response);
                 let task = JSON.parse(response);
                 console.log(response);
                 let template = '';
@@ -17,13 +19,14 @@ $('#searchCita').keyup(function(){
                         <td>
                         <a  class = "btn btn-ligth btnSolicitar btn-md rounded-pill" data-toggle="modal" data-target="#myModalAtender"> <i class="fas fa-headset fa-2x text-primary" title = "Atender"></i> </a>
                         </td>
-                            <td class="align-center">${tasks.fecha}</td>
-                            <td>${tasks.doctor}</td>
-                            <td>${tasks.disponible}</td>
+                            <td class="align-center">${tasks.dni}</td>
+                            <td>${tasks.nombre}</td>
+                            <td>${tasks.telefono}</td>
+                            <td>${tasks.genero}</td>
                         </tr>
                     `
                 });
-                $('#cotenidoCitas').html(template);
+                $('#cotenidoPaciente').html(template);
             }
         })
     } else {
@@ -33,20 +36,20 @@ $('#searchCita').keyup(function(){
 
 
 
-$('#form-solicitarCita').submit(function(e) {
+$('#form-add-cite').submit(function(e) {
     const postData = {
-        id: $('#idCitaMedica').val(),
+        fechaCita: $('#fechaCita').val(),
+        horaCita: $('#horaCita').val(),
+        lotCita: $('#lotCita').val(),
+        medicoCita: $('#medicoCita').val(),
     };
-    console.log(postData);
-    $.post('../Paciente/php/task-add-cita.php', postData, function(response){
-        if(response === 'Double cite'){
-            alert('Tiene una cita, ya registrada');
+    $.post('../Administracion/php/task-add-cita.php', postData, function(response){
+        if(response === 'Add Cite'){
+            $('#form-add-cite').trigger('reset');
+            alert('Se agrego una Cita');
+            fetchList();
         } else {
-                if(response === 'Success'){
-                    window.location.href = '../Paciente/Citas/';
-                } else {
-                    alert('La cita no cuenta con disponibilidad');
-                }
+            alert('Verifica los datos');
         }
     });
     e.preventDefault();
@@ -150,7 +153,22 @@ $('#form-edit-password').submit(function(e){
     });
     e.preventDefault();
 });
-
+function fetchDoctor(){
+    $.ajax({
+        url: '../php/task-list-medic.php',
+        type: 'GET',
+        success: function(response){
+            let task = JSON.parse(response);
+            let template = '';
+            task.forEach(tasks =>{
+                template +=`
+                <option value="${tasks.id}">${tasks.name}</option>
+                `
+            });
+            $('#medicoCita').html(template);
+        }
+    });
+}
 function fetchCliente(){
     
     $('#mostrarDatos').change(function(){
@@ -185,7 +203,7 @@ function fetchCliente(){
 
 function fetchList(){
     $.ajax({
-        url: '../Paciente/php/task-list-all.php',
+        url: '../Usuarios/php/task-list-all.php',
         type: 'GET',
         success: function(response){
             let task = JSON.parse(response);
@@ -196,13 +214,14 @@ function fetchList(){
                         <td>
                             <a  class = "btn btn-ligth btnSolicitar btn-md rounded-pill" data-toggle="modal" data-target="#myModalSolicitar"> <i class="fas fa-headset fa-2x text-primary" title = "Atender"></i> </a>
                             </td>
-                            <td>${tasks.fecha}</td>
-                            <td>${tasks.doctor}</td>
-                            <td>${tasks.disponible}</td>
+                            <td class="align-center">${tasks.dni}</td>
+                            <td>${tasks.nombre}</td>
+                            <td>${tasks.telefono}</td>
+                            <td>${tasks.genero}</td>
                         </tr>
                     `
                 });
-                $('#cotenidoCitas').html(template);
+                $('#cotenidoPaciente').html(template);
             }
     });
 }
