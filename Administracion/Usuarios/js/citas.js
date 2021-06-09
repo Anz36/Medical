@@ -57,10 +57,10 @@ $('#form-add-cite').submit(function(e) {
 
 $(document).on('click','.btnCerrarSession', function(){
     $.ajax({
-        url: '../Paciente/php/task-logout.php',
+        url: '../Usuarios/php/task-logout.php',
         type: 'GET',
         success: function(response){
-            window.location.href = '../Login/';
+            window.location.href = '../../Login/';
         }
     });
 });
