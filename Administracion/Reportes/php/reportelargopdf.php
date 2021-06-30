@@ -29,18 +29,20 @@ Class PDF extends FPDF{
     $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
 	}
 }
-$fecha = $_POST['fecha'];
+#$fecha = $_POST['fecha1'];
+#$fecha2 = $_POST['fecha2'];
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('PORTRAIT','A4');
 include "funciones.php";
 $name = $_SESSION['usuario'];
 $name = getUsuario($name);
+$fecha = '2021-06-29'; $fecha2 = '2021-07-01';
 
 	#Sí el usuario esta logueado, mostrata los Datos Correspondientes.
-	$pdf->SetFont('Times','B',15);
+	$pdf->SetFont('Times','B',14);
 	#Titulo
-	$pdf->Write(10,'Reporte de la Fecha '); $pdf->Write(10,$fecha);
+	$pdf->Write(10,'Reportes de las Fechas de '); $pdf->Write(10,$fecha); $pdf->Write(10,' hasta '); $pdf->Write(10,$fecha2);
 	$pdf->Ln(10);
 	#Subtitulos
 	$pdf->SetFont('Times','B',11);
@@ -71,7 +73,7 @@ $name = getUsuario($name);
 	$pdf->SetFontSize(11.5);
 	$pdf->SetTextColor(40,40,40);
 
-	$query = "SELECT * FROM datings WHERE active!= 0 AND created_at LIKE '$fecha%'";
+	$query = "SELECT * FROM datings WHERE active!= 0 AND created_at LIKE '$fecha' OR '$fecha2'";
 	$result = $conexion->query($query);
 	while ($row = $result->fetch_array()){
 		$pdf->Cell(20,10,$row['dating_id'],0,0,'C',0);
@@ -80,6 +82,6 @@ $name = getUsuario($name);
 		$pdf->Cell(45,10,$row['created_at'],0,1,'C',0);
 	}
 
-$pdf->Output('F','../Documentos/Reporte_Citas_'.$fecha.'.pdf',);
-echo $url = "../Reportes/Documentos/Reporte_Citas_".$fecha.".pdf";
+$pdf->Output('F','../Documentos/Reporte_Citas_'.$fecha.'_'.$fecha2.'.pdf',);
+echo $url = "../Reportes/Documentos/Reporte_Citas_".$fecha.'_'.$fecha2.".pdf";
 ?>

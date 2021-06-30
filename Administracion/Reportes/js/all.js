@@ -10,6 +10,17 @@ $('#form-file').submit(function(e) {
     e.preventDefault();
 });
 
+$('#form-file2').submit(function(e) {
+    const postData = {
+        fecha1: $('#fileDateF1').val(),
+        fecha2: $('#fileDateF2').val(),
+    };
+    $.post('../Reportes/php/reportelargopdf.php', postData, function(response){
+        window.open(response, '_blank');
+    });
+    e.preventDefault();
+});
+
 $(document).on('click','.btnCerrarSession', function(){
     $.ajax({
         url: '../Usuarios/php/task-logout.php',
