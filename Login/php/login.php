@@ -12,11 +12,15 @@
             while ($row = $result->fetch_array()){
                 $type = $row['type'];
             }
-            $_SESSION['type'] = $type;
+            
             if ($type == 'P'){
+                $_SESSION['type'] = $type;
                 header ('Location: ../../Paciente/');
-            } else {
+            } elseif ($type == 'A'){
+                $_SESSION['type'] = $type;
                 header ('Location: ../../Administracion/');
+            } else {
+                header ('Location: ../');
             }
         }
             

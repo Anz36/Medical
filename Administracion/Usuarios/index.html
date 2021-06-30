@@ -33,9 +33,27 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../Usuarios/" class="nav-link text-dark bg-light">
+                <a href="../Personas/" class="nav-link text-dark">
                     <i class="fas fa-tasks mr-3 text-primary"></i>
+                    Personas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../Usuarios/" class="nav-link text-dark bg-light">
+                    <i class="fas fa-user mr-3 text-primary"></i>
                     Usuarios
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../Medicos/" class="nav-link text-dark">
+                    <i class="fas fa-user-md mr-3 text-primary"></i>
+                    Medicos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../Reportes/" class="nav-link text-dark">
+                    <i class="fas fa-file-archive-md mr-3 text-primary"></i>
+                    Reportes
                 </a>
             </li>
         </ul>
@@ -46,19 +64,19 @@
             <button id="sidebarCollapse" type="button" class="btn btn-ligth bg-white rounded-pill shadow-sm px-4 mb-4">
                 <small class="text-uppercase font-weight-bold">Menú</small>
             </button>
-            <h2 class="display-4 text-dark">Pacientes</h2>
+            <h2 class="display-4 text-dark">Usuarios</h2>
             <p class="lead text-muted mb-0">
                 Datos obtenidos en tiempo real
             </p>
             <div class="row mb-2">
                 <div class="col-auto">
-                    <button type="button" class="btn btn-warning btn-sm rounded-pill" data-toggle="modal" data-target="#myModalCitas">
-                        Agregar Paciente
+                    <button type="button" class="btn btn-warning btn-sm rounded-pill" data-toggle="modal" data-target="#myModalUsuarios">
+                        Agregar Usuario Paciente
                     </button>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-warning btn-sm rounded-pill" data-toggle="modal" data-target="#myModalCitas">
-                        Agregar Usuario
+                    <button type="button" class="btn btn-warning btn-sm rounded-pill" data-toggle="modal" data-target="#myModalUsuariosAdmin">
+                        Agregar Usuario Administrador
                     </button>
                 </div>
             </div>
@@ -66,9 +84,9 @@
             <div class="row text-dark">
                 <div class="col">
                     <div class="form-group">
-                        <label for="searchPaciente">Busqueda</label>
-                        <input type="text" class="form-control" id="searchPaciente" aria-describedby="helpId" placeholder="Busqueda por ...">
-                        <small id="helpId" class="form-text text-muted">Busqueda por Nombre.</small>
+                        <label for="searchUsuario">Busqueda</label>
+                        <input type="text" class="form-control" id="searchUsuario" aria-describedby="helpId" placeholder="Busqueda por ...">
+                        <small id="helpId" class="form-text text-muted">Busqueda por Usuario.</small>
                       </div>
                 </div>
             </div>
@@ -93,13 +111,11 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="text-center">Acciones</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Genero</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Tipo</th>
                             </tr>
                         </thead>
-                        <tbody id="cotenidoPaciente">
+                        <tbody id="contenidoUsuarios">
                         </tbody>
                     </table>
                 </div>
@@ -108,67 +124,40 @@
 
         <!-- Inicio Modal's -->
             <!-- Modal -->
-            <div class="modal fade" id="myModalCitas" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal fade" id="myModalUsuarios" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Agregar Paciente</h5>
+                            <h5 class="modal-title">Agregar Usuario Paciente</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form id="form-add-paciente">
+                                <form id="form-add-user-paciente">
                                 <div class="row mb-2">
                                     <div class="col-5">
-                                        <div class="form-group">
-                                          <label for="pacienteDNI">DNI</label>
-                                          <input type="text" class="form-control" id="pacienteDNI" aria-describedby="helpId" placeholder="12345678">
-                                          <small id="helpId" class="form-text text-muted">DNI de paciente</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <div class="form-group">
-                                          <label for="pacienteNombre">Nombre y Apellido</label>
-                                          <input type="text" class="form-control" id="pacienteNombre" aria-describedby="helpId" placeholder="Nombre Apellido">
-                                          <small id="helpId" class="form-text text-muted">Recuerda: De preferencia solo un nombre y un apellido</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                          <label for="pacienteEmail">Email</label>
-                                          <input type="email" class="form-control" id="pacienteEmail" aria-describedby="helpId" placeholder="tucorreo@gmail.com">
-                                          <small id="helpId" class="form-text text-muted">Correo que mas usa</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <div class="form-group">
-                                          <label for="pacienteTelefono">Telefono</label>
-                                          <input type="text" class="form-control" id="pacienteTelefono" aria-describedby="helpId" placeholder="123456789">
-                                          <small id="helpId" class="form-text text-muted">Telefono que mas usa</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                          <label for="pacienteNacimiento">Nacimiento</label>
-                                          <input type="date" class="form-control" id="pacienteNacimiento" aria-describedby="helpId">
-                                          <small id="helpId" class="form-text text-muted">¿Cúando Nacio?</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="pacienteGenero">Genero</label>
-                                            <select class="custom-select" id="pacienteGenero">
-                                                <option selected>Selecione ...</option>
-                                                <option value="M">Hombre</option>
-                                                <option value="F">Mujer</option>
-                                                <option value="ND">No menciona</option>
+                                          <div class="form-group">
+                                            <label for="pacienteDNI">DNI</label>
+                                            <select class="form-control" id="pacienteDNI" aria-describedby="helpId">
                                             </select>
+                                            <small id="helpId" class="form-text text-muted">DNI del paciente</small>
+                                          </div>
+                                          
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                          <label for="claveSecreta">Contraseña</label>
+                                          <input type="password" class="form-control" id="claveSecreta" aria-describedby="helpId" placeholder="123ABC123">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                          <label for="claveSecretaConfirmar">Confirmar Contraseña</label>
+                                          <input type="password" class="form-control" id="claveSecretaConfirmar" aria-describedby="helpId" placeholder="123ABC123">
                                         </div>
                                     </div>
                                 </div>
@@ -182,8 +171,58 @@
                     </div>
                 </div>
             </div>
-            <!-- Fin del Modal Citas -->
+            <!-- Fin del Modal Add -->
             
+            <!-- Modal -->
+            <div class="modal fade" id="myModalUsuariosAdmin" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Agregar Usuario Administrador</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form id="form-add-user-admin">
+                                <div class="row mb-2">
+                                    <div class="col-5">
+                                          <div class="form-group">
+                                            <label for="personaDNI">DNI</label>
+                                            <select class="form-control" id="personaDNI" aria-describedby="helpId">
+                                            </select>
+                                            <small id="helpId" class="form-text text-muted">DNI de la persona</small>
+                                          </div>
+                                          
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                          <label for="claveSecretaA">Contraseña</label>
+                                          <input type="password" class="form-control" id="claveSecretaA" aria-describedby="helpId" placeholder="123ABC123">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                          <label for="claveSecretaConfirmarA">Confirmar Contraseña</label>
+                                          <input type="password" class="form-control" id="claveSecretaConfirmarA" aria-describedby="helpId" placeholder="123ABC123">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success rounded-pill">Guardar</button>
+                        </form>
+                            <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin del Modal Add -->
+
             <!-- Modal Perfil Datos -->
             <div class="modal fade" id="myModalPerfil">
                 <div class="modal-dialog modal-lg">
@@ -315,6 +354,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
-<script src="js/citas.js"></script>
+<script src="js/all.js"></script>
 <script src="js/user.js"></script>
 </html>
