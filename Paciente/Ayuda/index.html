@@ -56,47 +56,32 @@
             </button>
             <h2 class="display-4 text-dark">Ayuda</h2>
             <p class="lead text-muted mb-0">
-                Datos obtenidos en tiempo real
+                Envios por Correos Electronicos
             </p>
             <hr>
+        <!-- <div class="separator"></div> -->
             <div class="row text-dark">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="">Busqueda</label>
-                        <input type="text" class="form-control" id="searchCliente" aria-describedby="helpId" placeholder="Busqueda por ...">
-                        <small id="helpId" class="form-text text-muted">Busqueda por Fecha, Medico.</small>
-                      </div>
-                </div>
-            </div>
-            <div class="row text-dar">
+                <form id="form-email">
                 <div class="col-auto">
                     <div class="form-group">
-                      <label for="mostrar">Mostrar</label>
-                      <select class="form-control" id="mostrarDatos">
-                        <option value="25" select>25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="200">200</option>
-                        <option value="all">Todos</option>
-                      </select>
+                      <label for="asuntoEmail">Asunto</label>
+                      <input type="text" class="form-control" id="asuntoEmail" aria-describedby="helpId" placeholder="Asunto de Ayuda">
+                      <small id="helpId" class="form-text text-muted">Si es de importancia, por favor escribirla en Mayusculas</small>
                     </div>
                 </div>
             </div>
-        <!-- <div class="separator"></div> -->
-            <div class="row text-dark">
-                <div class="col-auto table-responsive">
-                    <table class="table table-hover table-md">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="text-center">Acciones</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Doctor</th>
-                                <th scope="col">Disponible</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cotenidoCita">
-                        </tbody>
-                    </table>
+            <div class="row mb-2 text-dark">
+                <div class="col-6">
+                    <div class="form-group">
+                      <label for="mensajeEmail">Mensaje</label>
+                      <textarea class="form-control" id="mensajeEmail" rows="8" cols="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2 text-dark" >
+                <div class="col">
+                    <button type="submit" class="btn btn-success rounded-pill">Enviar</button>
+                </form>
                 </div>
             </div>
         <!-- Fin del Contenido-->
@@ -189,5 +174,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
 <script src="js/cliente.js"></script>
-<script src="js/empresa.js"></script>
 </html>
